@@ -24,6 +24,16 @@ Particle.prototype.draw = function () {
   ctx.fill();
 };
 
+const particle1 = new Particle(
+  innerWidth / 2,
+  innerHeight / 2,
+  1,
+  1,
+  20,
+  "white"
+);
+particle1.draw();
+
 //Add update method to particle prototype
 
 Particle.prototype.update = function () {
@@ -35,5 +45,38 @@ Particle.prototype.update = function () {
     this.directionY = -this.directionY;
   }
 
+  this.x += this.directionX;
+  this.y += this.directionY;
+
   this.draw();
 };
+
+// Create particle array
+
+function init() {
+  particleArray = [];
+  for (let i = 0; i < 100; i++) {
+    let size = Math.random() * 20;
+    let x = Math.random() * (innerWidth - size * 2);
+    let y = Math.random() * (innerHeight - size * 2);
+    let directionX = Math.random() * 0.4 - 0.2;
+    let directionY = Math.random() * 0.4 - 0.2;
+    let color = "white";
+
+    particleArray.push(new Particle(x, y, directionX, directionY, size, color));
+  }
+}
+
+// Animation loop
+
+function animate() {
+  requestAnimationFrame(animate);
+  ctx.clearRect(0, 0, innerWidth, innerHeight);
+
+  for (let i = 0; i < particleArray.length; i++) {
+    particleArray[i].update();
+  }
+}
+
+init();
+animate();
