@@ -19,7 +19,7 @@ function Particle(x, y, directionX, directionY, size, color) {
 
 Particle.prototype.draw = function () {
   ctx.beginPath();
-  ctx.arc(this.x, this.y, this, this.size, 0, Math.PI * 2, false);
+  ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
   ctx.fillStyle = this.color;
   ctx.fill();
 };
@@ -80,3 +80,9 @@ function animate() {
 
 init();
 animate();
+
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  init();
+});
