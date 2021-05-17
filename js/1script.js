@@ -24,16 +24,6 @@ Particle.prototype.draw = function () {
   ctx.fill();
 };
 
-// const particle1 = new Particle(
-//   innerWidth / 2,
-//   innerHeight / 2,
-//   1,
-//   1,
-//   20,
-//   "white"
-// );
-// particle1.draw();
-
 //Add update method to particle prototype
 
 Particle.prototype.update = function () {

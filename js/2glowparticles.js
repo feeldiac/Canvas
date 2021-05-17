@@ -1,5 +1,5 @@
 const PI2 = Math.PI * 2;
-
+// console.log(PI2);
 export class GlowParticle {
   constructor(x, y, radius, rgb) {
     this.x = x;
@@ -11,11 +11,14 @@ export class GlowParticle {
     this.vy = Math.random() * 4;
 
     this.sinValue = Math.random();
+    // console.log(this.sinValue);
   }
 
   animate(ctx, stageWidth, stageHeight) {
     this.sinValue += 0.01;
+    // console.log(this.sinValue);
     this.radius += Math.sin(this.sinValue);
+    // console.log(this.radius);
 
     this.x += this.vx;
     this.y += this.vy;
@@ -35,5 +38,11 @@ export class GlowParticle {
       this.vy *= -1;
       this.y -= 10;
     }
+
+    ctx.beginPath();
+
+    ctx.fillStyle = `rgba(${this.rgb.r}, ${this.rgb.g}, ${this.rgb.b}, 1)`;
+    ctx.arc(this.x, this.y, this.radius, 0, PI2, false);
+    ctx.fill();
   }
 }
